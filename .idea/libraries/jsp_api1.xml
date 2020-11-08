@@ -1,0 +1,29 @@
+<component name="libraryTable">
+  <library name="jsp-api1">
+    <CLASSES>
+      <root url="jar://E:/lib (1)/jsp-api.jar!/" />
+      <root url="jar://E:/lib (1)/jstl-api-1.2.jar!/" />
+      <root url="jar://E:/lib (1)/jstl-impl-1.2.jar!/" />
+      <root url="jar://E:/lib (1)/mysql-connector-java-8.0.17.jar!/" />
+      <root url="jar://E:/lib (1)/servlet-api.jar!/" />
+      <root url="file://E:/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://E:/$RECYCLE.BIN/S-1-5-21-561615797-1686128698-4149092085-1001/$RFNT8CJ/src" />
+      <root url="file://E:/$RECYCLE.BIN/S-1-5-21-561615797-1686128698-4149092085-1001/$RK4EM8E/src" />
+      <root url="file://E:/$RECYCLE.BIN/S-1-5-21-561615797-1686128698-4149092085-1001/$RPC6ZZR/case_study_module_2/src" />
+      <root url="file://E:/$RECYCLE.BIN/S-1-5-21-561615797-1686128698-4149092085-1001/$RRVNS66/customer-management/src/main/java" />
+      <root url="file://E:/abc/APJ-Singleton-Demo" />
+      <root url="file://E:/apache-tomcat-8.5.59/webapps/docs/appdev/sample/src" />
+      <root url="file://E:/apache-tomcat-8.5.59/webapps/examples/WEB-INF/classes" />
+      <root url="file://E:/apache-tomcat-8.5.59/webapps/examples/WEB-INF/jsp/applet" />
+      <root url="file://E:/apache-tomcat-8.5.59/webapps/examples/jsp/plugin/applet" />
+      <root url="file://E:/btap/module3-customer-management/out/artifacts/customers_management_war_exploded/WEB-INF/lib/src" />
+      <root url="file://E:/btap/module3-customer-management/src" />
+      <root url="file://E:/social-network-java-core/src/main/java" />
+      <root url="file://E:/social-network-java-core/src/test/java" />
+    </SOURCES>
+    <jarDirectory url="file://E:/" recursive="false" />
+  </library>
+</component>
