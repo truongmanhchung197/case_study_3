@@ -13,10 +13,11 @@ public class UserService implements IUserService{
     Connection connection = ConnectionDB.getConnection();
 
     private static final String INSERT_USER_SQL = "INSERT INTO user (name,userAcc,userPass,avatarCover,avatar) VALUES (?,?,?,?,?);";
-    private static final String SELECT_USER_BY_ID = "SELECT * FROM user WHERE idUser = ?;";
+    private static final String SELECT_USER_BY_USERACC = "SELECT * FROM user WHERE userAcc = ?;";
     private static final String CHECK_LOGIN = "SELECT * FROM user WHERE userAcc = ? and userPass = ?;";
-    private static final String CHECK_USERNAME = "SELECT * FROM user WHERE userAcc = ?;";
+//    private static final String CHECK_USERNAME = "SELECT * FROM user WHERE userAcc = ?;";
     private static final String SELECT_USER_FOR_USERNAME = "SELECT * FROM user WHERE userAcc = ?;";
+    private static final String UPDATE_USER_SQL= "update User set avatarCover = ?, avatar = ? where userAcc = ?"
 
 
     private static final String SELECT_ALL_USERS = "SELECT * FROM user";
@@ -49,11 +50,11 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public User selectUser(int id) {
+    public User selectUser(String userAcc) {
         User user = null;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID);
-            preparedStatement.setInt(1,id);
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_USERACC);
+            preparedStatement.setString(1,userAcc);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()){
@@ -70,52 +71,55 @@ public class UserService implements IUserService{
         return user;
     }
 
-    @Override
-    public List<User> selectAllUser() {
-        return null;
-    }
+//    @Override
+//    public List<User> selectAllUser() {
+//        return null;
+//    }
+
+//    @Override
+//    public boolean deleteUser(int id) throws SQLException {
+//        return false;
+//    }
 
     @Override
-    public boolean deleteUser(int id) throws SQLException {
-        return false;
+    public void updateUser(User user) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement(UPDATE_USER_SQL);
+        ps.setString(1,user.getAvatarCover());
+        ps.setString(2,user.getAvatar());
+        ps.setString(3,user.getUserAccount());
+        ps.executeUpdate();
     }
 
-    @Override
-    public boolean updateUser(User user) throws SQLException {
-        return false;
-    }
-
-    @Override
-    public boolean checkUserName(String username) {
-        try {
-            PreparedStatement ps = connection.prepareStatement(CHECK_USERNAME);
-            ps.setString(1,username);
-            ResultSet resultSet = ps.executeQuery();
-            if (resultSet.next()){
-                return false;
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return true;
-    }
-    public User getUserFromUserName(String userName) {
+//    @Override
+//    public boolean checkUserName(String userAcc) {
+//        try {
+//            PreparedStatement ps = connection.prepareStatement(CHECK_USERNAME);
+//            ps.setString(1,userAcc);
+//            ResultSet resultSet = ps.executeQuery();
+//            if (resultSet.next()){
+//                return false;
+//            }
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
+//        return true;
+//    }
+    public User getUserFromUserName(String userAcc) {
         try {
             PreparedStatement ps = connection.prepareStatement(SELECT_USER_FOR_USERNAME);
-            ps.setString(1,userName);
+            ps.setString(1,userAcc);
             ResultSet resultSet = ps.executeQuery();
             if (resultSet.next()){
                 int id = resultSet.getInt("idUser");
                 String name = resultSet.getString("name");
-                String userAcc = resultSet.getString("userAcc");
                 String userPass = resultSet.getString("userPass");
                 String avatarCover = resultSet.getString("avatarCover");
                 String avatar = resultSet.getString("avatar");
 
                 return new User(id,name,userAcc,userPass,avatarCover,avatar);
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
